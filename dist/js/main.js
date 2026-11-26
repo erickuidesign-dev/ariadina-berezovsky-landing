@@ -131,6 +131,25 @@
       if (announce) { btn.focus(); }
     }
 
+    // Quando a agenda recebe os horários ocupados do Google Agenda, marca os dias lotados
+    document.addEventListener('ab:ocupados-atualizados', function () {
+      if (typeof window.AB_AGENDA_DISPONIVEL !== 'function') { return; }
+      buttons.forEach(function (b) {
+        var full = !window.AB_AGENDA_DISPONIVEL(b.dataset.iso);
+        b.disabled = full;
+        b.classList.toggle('is-full', full);
+        b.setAttribute('aria-label', labelOf(b._date) + (full ? ', lotado' : ''));
+        var mon = b.querySelector('.day__mon');
+        if (mon) { mon.textContent = full ? 'lotado' : MONTHS[b._date.getMonth()]; }
+        if (full && b.getAttribute('aria-checked') === 'true') {
+          b.setAttribute('aria-checked', 'false');
+          selected = null;
+          swapLabel(defaultLabel);
+          if (note) { note.textContent = 'Esse dia lotou. Escolha outro dia para ver os horários.'; }
+        }
+      });
+    });
+
     box.addEventListener('click', function (e) {
       var btn = e.target.closest('.day');
       if (btn) { select(btn, false); }

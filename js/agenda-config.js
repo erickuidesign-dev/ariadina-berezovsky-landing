@@ -1,4 +1,4 @@
-/* Ariadina Berezovsky | agenda | configuração
+﻿/* Ariadina Berezovsky | agenda | configuração
    Edite só este arquivo para mudar horários, dias e o WhatsApp. Não precisa mexer em agenda.js.
    Os valores marcados com "CONFIRMAR" são padrões provisórios e precisam ser validados com a Ariadina. */
 window.AB_AGENDA_CONFIG = {
@@ -7,6 +7,10 @@ window.AB_AGENDA_CONFIG = {
   whatsapp: '5511974307939',
 
   profissional: 'Ariadina',
+
+  // Endereço do script do Google (Apps Script) que devolve os horários ocupados da agenda dela.
+  // Termina em /exec. Vazio = o site usa só blockedSlots/blockedDates abaixo. Ver tools/google-agenda/LEIA-ME.md
+  googleAgendaUrl: '',
 
   // Contato mostrado no rodapé. O que ficar vazio não aparece no site. CONFIRMAR com a Ariadina.
   // O WhatsApp do rodapé é o mesmo número configurado acima.

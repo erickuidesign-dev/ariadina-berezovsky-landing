@@ -44,6 +44,18 @@
   };
 
   /* ---------- Disponibilidade ---------- */
+  // Horários ocupados vindos do Google Agenda da Ariadina (só início e fim, em ms). Ver tools/google-agenda.
+  var BUSY = [];
+  var TZ = CFG.timezoneOffset || '-03:00'; // horário de Brasília, sem horário de verão
+  function slotStart(d, hhmm) { return Date.parse(iso(d) + 'T' + hhmm + ':00' + TZ); }
+  function isBusy(d, hhmm, step) {
+    var s = slotStart(d, hhmm);
+    var e = s + step * 60000;
+    for (var i = 0; i < BUSY.length; i += 1) {
+      if (BUSY[i].s < e && BUSY[i].e > s) { return true; }
+    }
+    return false;
+  }
   function slotsFor(d) {
     var day = CFG.weekdays && CFG.weekdays[d.getDay()];
     if (!day) { return []; }
@@ -52,7 +64,7 @@
     var out = [];
     for (var m = toMin(day.from); m + step <= toMin(day.to); m += step) {
       var label = fromMin(m);
-      if (blocked.indexOf(label) === -1) { out.push(label); }
+      if (blocked.indexOf(label) === -1 && !isBusy(d, label, step)) { out.push(label); }
     }
     return out;
   }
@@ -63,6 +75,8 @@
     if ((CFG.blockedDates || []).indexOf(iso(d)) > -1) { return false; }
     return slotsFor(d).length > 0;
   }
+  // Usado pela agenda rápida da hero para marcar dias lotados
+  window.AB_AGENDA_DISPONIVEL = function (isoDate) { var d = parseIso(isoDate); return !!(d && isAvailable(d)); };
 
   /* ---------- Elementos ---------- */
   var monthLabel = $('#cal-month');
@@ -425,7 +439,60 @@
     ];
     if (d.obs) { lines.push('Observações: ' + d.obs); }
     lines.push('', 'Aguardo a confirmação. Obrigado!');
+    var link = confirmLink();
+    if (link) { lines.push('', 'Para a ' + (CFG.profissional || 'Ariadina') + ' confirmar na agenda: ' + link); }
     return lines.join('\n');
+  }
+
+  // Link do Google Agenda com o evento já preenchido: a Ariadina toca, salva e o horário fica ocupado no site.
+  function gcalStamp(ms) { return new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); }
+  function confirmLink() {
+    if (!CFG.googleAgendaUrl || !S.date || !S.time) { return ''; }
+    var d = S.data;
+    var start = slotStart(S.date, S.time);
+    var end = start + (CFG.slotMinutes || 60) * 60000;
+    var details = [
+      svcLabel(S.svc) + ' em casa',
+      'Tutor: ' + d.nome,
+      'WhatsApp: ' + d.fone,
+      'Pet: ' + d.pet + ' (' + ESPECIE[d.especie].toLowerCase() + ')'
+    ];
+    if (d.obs) { details.push('Observações: ' + d.obs); }
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+      '&text=' + encodeURIComponent(svcLabel(S.svc) + ': ' + d.pet + ' (' + d.nome + ')') +
+      '&dates=' + gcalStamp(start) + '/' + gcalStamp(end) +
+      '&details=' + encodeURIComponent(details.join('\n')) +
+      '&location=' + encodeURIComponent(d.end) +
+      '&ctz=America/Sao_Paulo';
+  }
+
+  /* ---------- Horários ocupados (Google Agenda) ---------- */
+  function loadBusy() {
+    if (!CFG.googleAgendaUrl || !window.fetch) { return; }
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) { ctrl.abort(); } }, 10000);
+    fetch(CFG.googleAgendaUrl, ctrl ? { signal: ctrl.signal } : {})
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        clearTimeout(timer);
+        if (!res || !res.ok || !Array.isArray(res.busy)) { return; }
+        BUSY = res.busy.filter(function (b) { return typeof b.s === 'number' && typeof b.e === 'number' && b.e > b.s; });
+        applyBusy();
+      })
+      .catch(function () { clearTimeout(timer); /* sem conexão com a agenda: segue com a configuração local */ });
+  }
+  function applyBusy() {
+    var lost = false;
+    if (S.date && !isAvailable(S.date)) { S.date = null; S.time = null; lost = true; }
+    else if (S.date && S.time && slotsFor(S.date).indexOf(S.time) === -1) { S.time = null; lost = true; }
+    renderCal();
+    renderSlots(false);
+    refresh();
+    if (lost) {
+      $('#err-quando').textContent = 'O horário que você tinha escolhido acabou de ser ocupado. Escolha outro, por favor.';
+      if (S.step !== 1 && S.step !== 'done') { goStep(1); }
+    }
+    document.dispatchEvent(new CustomEvent('ab:ocupados-atualizados', { detail: { busy: BUSY.slice() } }));
   }
 
   function copyText(text) {
@@ -568,4 +635,5 @@
   readForm();
   renderSummary();
   updateSteps();
+  loadBusy();
 }());
