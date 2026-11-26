@@ -1,36 +1,70 @@
 /* Ariadina Berezovsky | botão flutuante do WhatsApp em formato de pata
    Pata na cor de destaque (caramelo), ícone do WhatsApp em creme na almofada.
-   Some sem número configurado e enquanto o rodapé está na tela. */
+   Some sem número configurado e enquanto o rodapé está na tela.
+   Os dedos são <g>: a inclinação fica no atributo da elipse e o movimento no grupo,
+   assim a animação nunca apaga a inclinação. */
 
-.wa-fab { position: fixed; z-index: 60; right: max(14px, env(safe-area-inset-right, 0px) + 10px); bottom: max(14px, env(safe-area-inset-bottom, 0px) + 10px); display: block; width: 84px; height: 84px; color: var(--on-accent); text-decoration: none; -webkit-tap-highlight-color: transparent; transition: transform .35s var(--ease-spring), opacity .3s ease; }
+.wa-fab { --wa-ease: cubic-bezier(.34, 1.56, .64, 1); position: fixed; z-index: 60; right: max(14px, env(safe-area-inset-right, 0px) + 10px); bottom: max(14px, env(safe-area-inset-bottom, 0px) + 10px); display: block; width: 84px; height: 84px; color: var(--on-accent); text-decoration: none; -webkit-tap-highlight-color: transparent; transition: transform .45s var(--wa-ease), opacity .3s ease; }
 .wa-fab[hidden] { display: none; }
 .wa-fab:focus-visible { outline: none; }
-.wa-fab:focus-visible .wa-fab__paw { outline: 3px solid var(--focus); outline-offset: 4px; border-radius: 50%; }
+.wa-fab:focus-visible .wa-fab__paw { outline: 3px solid var(--focus); outline-offset: 6px; border-radius: 40%; }
 
-.wa-fab__paw { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 10px 14px rgba(74, 42, 30, .35)); }
-.wa-fab__toe, .wa-fab__pad { fill: var(--accent); stroke: var(--surface-soft); stroke-width: 2.4; paint-order: stroke; transition: fill .25s ease; }
-.wa-fab__toe { transform-box: fill-box; transform-origin: 50% 100%; }
+.wa-fab__paw { position: relative; z-index: 1; display: block; width: 100%; height: 100%; overflow: visible; transform-origin: 50% 70%; filter: drop-shadow(0 10px 12px rgba(74, 42, 30, .32)); transition: transform .45s var(--wa-ease), filter .35s ease; }
+.wa-fab__toe ellipse, .wa-fab__pad { fill: var(--accent); stroke: var(--surface-soft); stroke-width: 2.4; paint-order: stroke; transition: fill .3s ease; }
+.wa-fab__toe { transition: transform .45s var(--wa-ease); }
+.wa-fab__toe:nth-of-type(2) { transition-delay: 30ms; }
+.wa-fab__toe:nth-of-type(3) { transition-delay: 60ms; }
+.wa-fab__toe:nth-of-type(4) { transition-delay: 90ms; }
+.wa-fab__wa { transition: transform .45s var(--wa-ease); transform-box: fill-box; transform-origin: 50% 50%; }
 .wa-fab__wa path { fill: none; stroke: var(--on-accent); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
 .wa-fab__wa .fa { fill: var(--surface-soft); stroke: none; }
 
-.wa-fab:hover .wa-fab__toe, .wa-fab:hover .wa-fab__pad, .wa-fab:focus-visible .wa-fab__toe, .wa-fab:focus-visible .wa-fab__pad { fill: var(--accent-hover); }
-.wa-fab:hover { transform: translateY(-3px) rotate(-6deg); }
-.wa-fab:active { transform: scale(.94); }
+/* Onda que sai da almofada */
+.wa-fab__ring { position: absolute; left: 50%; top: 68%; width: 64%; aspect-ratio: 1; border-radius: 50%; border: 2px solid var(--accent); translate: -50% -50%; opacity: 0; pointer-events: none; }
 
-/* Etiqueta à esquerda da pata, no hover/foco */
-.wa-fab__tx { position: absolute; right: calc(100% + 8px); top: 58%; translate: 0 -50%; padding: 10px 16px; border-radius: var(--radius-pill); background: var(--accent); color: var(--on-accent); font-weight: 700; font-size: 15px; white-space: nowrap; box-shadow: 0 10px 22px -12px rgba(74, 42, 30, .6); opacity: 0; transform: translateX(8px); pointer-events: none; transition: opacity .25s ease, transform .35s var(--ease); }
+/* ---------- Hover e foco: a pata sobe e abre os dedos ---------- */
+.wa-fab:hover .wa-fab__paw, .wa-fab:focus-visible .wa-fab__paw { transform: translateY(-4px) scale(1.04); filter: drop-shadow(0 16px 16px rgba(74, 42, 30, .34)); }
+.wa-fab:hover .wa-fab__toe, .wa-fab:focus-visible .wa-fab__toe { transform: translate(var(--dx), var(--dy)); }
+.wa-fab:hover .wa-fab__toe ellipse, .wa-fab:hover .wa-fab__pad, .wa-fab:focus-visible .wa-fab__toe ellipse, .wa-fab:focus-visible .wa-fab__pad { fill: var(--accent-hover); }
+.wa-fab:hover .wa-fab__wa, .wa-fab:focus-visible .wa-fab__wa { transform: scale(1.08); }
+
+/* Clique: a pata "pisa" */
+.wa-fab:active .wa-fab__paw { transform: translateY(1px) scale(.92); transition-duration: .12s; }
+.wa-fab:active .wa-fab__toe { transform: none; transition-duration: .12s; }
+
+/* Etiqueta à esquerda da pata */
+.wa-fab__tx { position: absolute; right: calc(100% + 10px); top: 62%; translate: 0 -50%; padding: 10px 16px; border-radius: var(--radius-pill); background: var(--accent-hover); color: var(--on-accent); font-weight: 700; font-size: 15px; white-space: nowrap; box-shadow: 0 10px 22px -12px rgba(74, 42, 30, .6); opacity: 0; transform: translateX(10px) scale(.96); transform-origin: 100% 50%; pointer-events: none; transition: opacity .25s ease, transform .45s var(--wa-ease); }
+.wa-fab__tx::after { content: ""; position: absolute; right: -5px; top: 50%; width: 10px; height: 10px; background: inherit; border-radius: 2px; transform: translateY(-50%) rotate(45deg); }
 .wa-fab:hover .wa-fab__tx, .wa-fab:focus-visible .wa-fab__tx { opacity: 1; transform: none; }
 
 /* Some enquanto o rodapé (que já tem o botão do WhatsApp) está visível */
-.wa-fab.is-away { opacity: 0; transform: translateY(16px) scale(.85); pointer-events: none; }
+.wa-fab.is-away { opacity: 0; transform: translateY(18px) scale(.85); pointer-events: none; }
 
+/* ---------- Movimento em repouso: uma "pisada" a cada 6s ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  .js .wa-fab:not(.is-in) { opacity: 0; transform: translateY(24px) scale(.8); pointer-events: none; }
-  /* dedinhos "batem" de leve, um de cada vez */
-  .wa-fab.is-in .wa-fab__toe { animation: waToe 3.2s ease-in-out 2s infinite; animation-delay: calc(2s + var(--t) * 120ms); }
-  .wa-fab:hover .wa-fab__toe { animation: none; }
+  .js .wa-fab:not(.is-in) { opacity: 0; transform: translateY(28px) scale(.7); pointer-events: none; }
+  .wa-fab.is-in:not(:hover):not(:focus-visible) .wa-fab__paw { animation: waStep 6s 2.5s infinite; }
+  .wa-fab.is-in:not(:hover):not(:focus-visible) .wa-fab__toe { animation: waToe 6s 2.5s infinite; }
+  .wa-fab.is-in:not(:hover):not(:focus-visible) .wa-fab__ring { animation: waRing 6s 2.5s infinite; }
 }
-@keyframes waToe { 0%, 70%, 100% { transform: none; } 78% { transform: translateY(-2.5px) scale(1.06); } 86% { transform: none; } }
+/* afunda, volta passando um pouco (mola) e assenta; o resto do ciclo fica parado */
+@keyframes waStep {
+  0%   { transform: none; animation-timing-function: cubic-bezier(.4, 0, .6, 1); }
+  4%   { transform: translateY(2px) scale(.9, .88); animation-timing-function: cubic-bezier(.2, .8, .3, 1.4); }
+  11%  { transform: translateY(-3px) scale(1.04); animation-timing-function: ease-out; }
+  17%, 100% { transform: none; }
+}
+/* os dedos abrem quando a pata assenta */
+@keyframes waToe {
+  0%, 4% { transform: none; animation-timing-function: cubic-bezier(.2, .8, .3, 1.4); }
+  11%    { transform: translate(var(--dx), var(--dy)); animation-timing-function: ease-in-out; }
+  19%, 100% { transform: none; }
+}
+@keyframes waRing {
+  0%, 4% { opacity: 0; transform: scale(.8); }
+  6%     { opacity: .55; transform: scale(.9); }
+  26%, 100% { opacity: 0; transform: scale(1.9); }
+}
 
 @media (hover: none) { .wa-fab__tx { display: none; } }
 @media (max-width: 560px) { .wa-fab { width: 76px; height: 76px; } }
