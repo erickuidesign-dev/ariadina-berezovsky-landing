@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="css/faq.css">
 <link rel="stylesheet" href="css/agenda.css">
 <link rel="stylesheet" href="css/rodape.css">
-<link rel="stylesheet" href="css/whatsapp.css?v=4">
+<link rel="stylesheet" href="css/whatsapp.css?v=5">
 <script>document.documentElement.classList.add('js');</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"Quais dias vocês atendem?","acceptedAnswer":{"@type":"Answer","text":"Atendemos às terças, quintas e sábados. Os horários disponíveis aparecem na agenda, depois que você escolhe o dia."}},
@@ -678,18 +678,21 @@
 </footer>
 
 <a class="wa-fab" id="wa-fab" href="#agenda" target="_blank" rel="noopener" aria-label="Conversar com a Ariadina no WhatsApp" hidden>
-  <span class="wa-fab__ring" aria-hidden="true"></span>
+  <span class="wa-fab__float">
   <svg class="wa-fab__paw" viewBox="0 0 64 64" aria-hidden="true">
     <g class="wa-fab__toe" style="--t:0;--dx:-2.6px;--dy:-1px"><ellipse cx="11" cy="27" rx="7" ry="9" transform="rotate(-18 11 27)"/></g>
     <g class="wa-fab__toe" style="--t:1;--dx:-1px;--dy:-2.6px"><ellipse cx="24.5" cy="13" rx="7.2" ry="9.4" transform="rotate(-6 24.5 13)"/></g>
     <g class="wa-fab__toe" style="--t:2;--dx:1px;--dy:-2.6px"><ellipse cx="39.5" cy="13" rx="7.2" ry="9.4" transform="rotate(6 39.5 13)"/></g>
     <g class="wa-fab__toe" style="--t:3;--dx:2.6px;--dy:-1px"><ellipse cx="53" cy="27" rx="7" ry="9" transform="rotate(18 53 27)"/></g>
     <path class="wa-fab__pad" d="M32 27c-11.5 0-21 10.6-21 20.2 0 7.1 5.6 10.6 11.6 9.6 3.6-.6 6-1.8 9.4-1.8s5.8 1.2 9.4 1.8c6 1 11.6-2.5 11.6-9.6C53 37.6 43.5 27 32 27z"/>
-    <g class="wa-fab__wa" transform="translate(20.5 31.5) scale(.96)">
-      <path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.2A8.8 8.8 0 1 0 12 3.2z"/>
-      <path class="fa" d="M8.9 7.6c.3-.4.9-.4 1.2 0l1 1.4c.2.3.2.8 0 1.1l-.5.6a6 6 0 0 0 2.7 2.7l.6-.5c.3-.3.8-.3 1.1 0l1.4 1c.4.3.4.9 0 1.2l-.6.6c-.7.7-1.7.9-2.5.5a9.7 9.7 0 0 1-5-5c-.4-.8-.2-1.8.5-2.5z"/>
+    <g transform="translate(20.5 31.5) scale(.96)">
+      <g class="wa-fab__wa">
+        <path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.2A8.8 8.8 0 1 0 12 3.2z"/>
+        <path class="fa" d="M8.9 7.6c.3-.4.9-.4 1.2 0l1 1.4c.2.3.2.8 0 1.1l-.5.6a6 6 0 0 0 2.7 2.7l.6-.5c.3-.3.8-.3 1.1 0l1.4 1c.4.3.4.9 0 1.2l-.6.6c-.7.7-1.7.9-2.5.5a9.7 9.7 0 0 1-5-5c-.4-.8-.2-1.8.5-2.5z"/>
+      </g>
     </g>
   </svg>
+  </span>
   <span class="wa-fab__tx">Fale com a Ariadina</span>
 </a>
 
