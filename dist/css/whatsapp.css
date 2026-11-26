@@ -1,0 +1,36 @@
+/* Ariadina Berezovsky | botão flutuante do WhatsApp em formato de pata
+   Pata na cor de destaque (caramelo), ícone do WhatsApp em creme na almofada.
+   Some sem número configurado e enquanto o rodapé está na tela. */
+
+.wa-fab { position: fixed; z-index: 60; right: max(14px, env(safe-area-inset-right, 0px) + 10px); bottom: max(14px, env(safe-area-inset-bottom, 0px) + 10px); display: block; width: 84px; height: 84px; color: var(--on-accent); text-decoration: none; -webkit-tap-highlight-color: transparent; transition: transform .35s var(--ease-spring), opacity .3s ease; }
+.wa-fab[hidden] { display: none; }
+.wa-fab:focus-visible { outline: none; }
+.wa-fab:focus-visible .wa-fab__paw { outline: 3px solid var(--focus); outline-offset: 4px; border-radius: 50%; }
+
+.wa-fab__paw { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 10px 14px rgba(74, 42, 30, .35)); }
+.wa-fab__toe, .wa-fab__pad { fill: var(--accent); stroke: var(--surface-soft); stroke-width: 2.4; paint-order: stroke; transition: fill .25s ease; }
+.wa-fab__toe { transform-box: fill-box; transform-origin: 50% 100%; }
+.wa-fab__wa path { fill: none; stroke: var(--on-accent); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.wa-fab__wa .fa { fill: var(--surface-soft); stroke: none; }
+
+.wa-fab:hover .wa-fab__toe, .wa-fab:hover .wa-fab__pad, .wa-fab:focus-visible .wa-fab__toe, .wa-fab:focus-visible .wa-fab__pad { fill: var(--accent-hover); }
+.wa-fab:hover { transform: translateY(-3px) rotate(-6deg); }
+.wa-fab:active { transform: scale(.94); }
+
+/* Etiqueta à esquerda da pata, no hover/foco */
+.wa-fab__tx { position: absolute; right: calc(100% + 8px); top: 58%; translate: 0 -50%; padding: 10px 16px; border-radius: var(--radius-pill); background: var(--accent); color: var(--on-accent); font-weight: 700; font-size: 15px; white-space: nowrap; box-shadow: 0 10px 22px -12px rgba(74, 42, 30, .6); opacity: 0; transform: translateX(8px); pointer-events: none; transition: opacity .25s ease, transform .35s var(--ease); }
+.wa-fab:hover .wa-fab__tx, .wa-fab:focus-visible .wa-fab__tx { opacity: 1; transform: none; }
+
+/* Some enquanto o rodapé (que já tem o botão do WhatsApp) está visível */
+.wa-fab.is-away { opacity: 0; transform: translateY(16px) scale(.85); pointer-events: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .wa-fab:not(.is-in) { opacity: 0; transform: translateY(24px) scale(.8); pointer-events: none; }
+  /* dedinhos "batem" de leve, um de cada vez */
+  .wa-fab.is-in .wa-fab__toe { animation: waToe 3.2s ease-in-out 2s infinite; animation-delay: calc(2s + var(--t) * 120ms); }
+  .wa-fab:hover .wa-fab__toe { animation: none; }
+}
+@keyframes waToe { 0%, 70%, 100% { transform: none; } 78% { transform: translateY(-2.5px) scale(1.06); } 86% { transform: none; } }
+
+@media (hover: none) { .wa-fab__tx { display: none; } }
+@media (max-width: 560px) { .wa-fab { width: 76px; height: 76px; } }

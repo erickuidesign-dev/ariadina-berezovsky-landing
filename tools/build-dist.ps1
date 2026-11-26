@@ -10,8 +10,8 @@ $dist = Join-Path $root 'dist'
 if (Test-Path -LiteralPath $dist) { Remove-Item -LiteralPath $dist -Recurse -Force }
 New-Item -ItemType Directory -Path $dist | Out-Null
 
-$css = 'tokens', 'icons', 'landing', 'como-funciona', 'servicos', 'sobre', 'faq', 'agenda', 'rodape'
-$js  = 'icons', 'como-funciona', 'servicos', 'sobre', 'depoimentos-data', 'faq', 'agenda-config', 'agenda', 'rodape', 'main'
+$css = 'tokens', 'icons', 'landing', 'como-funciona', 'servicos', 'sobre', 'faq', 'agenda', 'rodape', 'whatsapp'
+$js  = 'icons', 'como-funciona', 'servicos', 'sobre', 'depoimentos-data', 'faq', 'agenda-config', 'agenda', 'rodape', 'main', 'whatsapp'
 
 New-Item -ItemType Directory -Path (Join-Path $dist 'css'), (Join-Path $dist 'js'), (Join-Path $dist 'assets\fotos') | Out-Null
 Copy-Item -LiteralPath (Join-Path $root 'index.html') -Destination $dist
