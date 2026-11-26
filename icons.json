@@ -1,0 +1,152 @@
+[
+  {
+    "nome": "paw",
+    "rotulo": "Pata",
+    "grupo": "Marca"
+  },
+  {
+    "nome": "dog",
+    "rotulo": "Cão",
+    "grupo": "Pets"
+  },
+  {
+    "nome": "cat",
+    "rotulo": "Gato",
+    "grupo": "Pets"
+  },
+  {
+    "nome": "calendar",
+    "rotulo": "Agenda",
+    "grupo": "Atendimento"
+  },
+  {
+    "nome": "clock",
+    "rotulo": "Horário",
+    "grupo": "Atendimento"
+  },
+  {
+    "nome": "home",
+    "rotulo": "Em casa",
+    "grupo": "Atendimento"
+  },
+  {
+    "nome": "syringe",
+    "rotulo": "Vacina",
+    "grupo": "Atendimento"
+  },
+  {
+    "nome": "stethoscope",
+    "rotulo": "Consulta",
+    "grupo": "Atendimento"
+  },
+  {
+    "nome": "bag",
+    "rotulo": "Maleta",
+    "grupo": "Atendimento"
+  },
+  {
+    "nome": "sofa",
+    "rotulo": "Sofá",
+    "grupo": "Atendimento"
+  },
+  {
+    "nome": "car-off",
+    "rotulo": "Sem transporte",
+    "grupo": "Atendimento"
+  },
+  {
+    "nome": "hourglass",
+    "rotulo": "Sem espera",
+    "grupo": "Atendimento"
+  },
+  {
+    "nome": "heart",
+    "rotulo": "Cuidado",
+    "grupo": "Confiança"
+  },
+  {
+    "nome": "shield",
+    "rotulo": "Confiança",
+    "grupo": "Confiança"
+  },
+  {
+    "nome": "check",
+    "rotulo": "Confirmado",
+    "grupo": "Confiança"
+  },
+  {
+    "nome": "star",
+    "rotulo": "Destaque",
+    "grupo": "Confiança"
+  },
+  {
+    "nome": "sparkle",
+    "rotulo": "Novidade",
+    "grupo": "Confiança"
+  },
+  {
+    "nome": "quote",
+    "rotulo": "Depoimento",
+    "grupo": "Confiança"
+  },
+  {
+    "nome": "chat",
+    "rotulo": "Conversa",
+    "grupo": "Contato"
+  },
+  {
+    "nome": "phone",
+    "rotulo": "Telefone",
+    "grupo": "Contato"
+  },
+  {
+    "nome": "mail",
+    "rotulo": "E-mail",
+    "grupo": "Contato"
+  },
+  {
+    "nome": "pin",
+    "rotulo": "Local",
+    "grupo": "Contato"
+  },
+  {
+    "nome": "camera",
+    "rotulo": "Instagram",
+    "grupo": "Contato"
+  },
+  {
+    "nome": "person",
+    "rotulo": "Pessoa",
+    "grupo": "Contato"
+  },
+  {
+    "nome": "arrow-right",
+    "rotulo": "Seta",
+    "grupo": "Interface"
+  },
+  {
+    "nome": "chevron-down",
+    "rotulo": "Abrir",
+    "grupo": "Interface"
+  },
+  {
+    "nome": "chevron-right",
+    "rotulo": "Avançar",
+    "grupo": "Interface"
+  },
+  {
+    "nome": "menu",
+    "rotulo": "Menu",
+    "grupo": "Interface"
+  },
+  {
+    "nome": "close",
+    "rotulo": "Fechar",
+    "grupo": "Interface"
+  },
+  {
+    "nome": "plus",
+    "rotulo": "Mais",
+    "grupo": "Interface"
+  }
+]

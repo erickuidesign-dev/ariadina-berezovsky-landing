@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ícones | Ariadina Berezovsky</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=DM+Sans:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/icons.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface); color: var(--ink); font-family: var(--font-sans); line-height: 1.5; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 40px max(16px, env(safe-area-inset-left, 0px)) 80px; }
+  h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px, 6vw, 56px); line-height: 1.05; margin: 0 0 8px; }
+  h2 { font-family: var(--font-display); font-weight: 600; font-size: 24px; margin: 40px 0 14px; }
+  p { margin: 0; color: var(--ink-muted); max-width: 62ch; }
+  .tools { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 24px 0 0; }
+  input[type="search"] { font: inherit; padding: 12px 18px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-soft); color: var(--ink); min-width: 220px; }
+  label { font-size: 14px; display: inline-flex; align-items: center; gap: 8px; }
+  button.t { font: 500 14px var(--font-sans); padding: 10px 18px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-soft); color: var(--ink); cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 12px; }
+  .card { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 20px 10px 14px; border-radius: 24px; border: 0; background: var(--surface-soft); color: var(--ink); font: inherit; cursor: pointer; transition: transform .2s ease, background-color .2s ease; }
+  .card:hover { transform: translateY(-3px); background: var(--surface-deep); }
+  .card .ic { width: var(--size, 32px); height: var(--size, 32px); }
+  .card .n { font: 700 13px var(--font-sans); }
+  .card .l { font-size: 12px; color: var(--ink-muted); }
+  .card.copied { background: var(--accent); color: var(--on-accent); --icon-accent: var(--on-accent); }
+  .card.copied .l { color: var(--on-accent); }
+  pre { margin: 28px 0 0; padding: 16px 20px; border-radius: 20px; background: var(--surface-soft); overflow-x: auto; font-size: 13px; }
+  .hidden { display: none; }
+  @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Biblioteca de ícones</h1>
+  <p>30 ícones feitos para a landing page da Ariadina Berezovsky: traço de 1,75 em grade 24, pontas redondas e um detalhe em caramelo. Clique em um ícone para copiar o código.</p>
+  <div class="tools">
+    <input id="q" type="search" placeholder="Buscar ícone" aria-label="Buscar ícone">
+    <label>Tamanho <input id="size" type="range" min="20" max="64" value="32" aria-label="Tamanho dos ícones"></label>
+    <button class="t" id="mono" type="button" aria-pressed="false">Traço único</button>
+    <button class="t" id="theme" type="button">Tema escuro</button>
+  </div>
+  <div id="list">
+    <section class="grp" aria-label="Marca">
+      <h2>Marca</h2>
+      <div class="grid">
+        <button class="card" type="button" data-name="paw" data-label="pata" title="Copiar o código de paw">
+          <svg class="ic" aria-hidden="true"><use href="#paw"/></svg>
+          <span class="n">paw</span>
+          <span class="l">Pata</span>
+        </button>
+      </div>
+    </section>
+    <section class="grp" aria-label="Pets">
+      <h2>Pets</h2>
+      <div class="grid">
+        <button class="card" type="button" data-name="dog" data-label="cão" title="Copiar o código de dog">
+          <svg class="ic" aria-hidden="true"><use href="#dog"/></svg>
+          <span class="n">dog</span>
+          <span class="l">Cão</span>
+        </button>
+        <button class="card" type="button" data-name="cat" data-label="gato" title="Copiar o código de cat">
+          <svg class="ic" aria-hidden="true"><use href="#cat"/></svg>
+          <span class="n">cat</span>
+          <span class="l">Gato</span>
+        </button>
+      </div>
+    </section>
+    <section class="grp" aria-label="Atendimento">
+      <h2>Atendimento</h2>
+      <div class="grid">
+        <button class="card" type="button" data-name="calendar" data-label="agenda" title="Copiar o código de calendar">
+          <svg class="ic" aria-hidden="true"><use href="#calendar"/></svg>
+          <span class="n">calendar</span>
+          <span class="l">Agenda</span>
+        </button>
+        <button class="card" type="button" data-name="clock" data-label="horário" title="Copiar o código de clock">
+          <svg class="ic" aria-hidden="true"><use href="#clock"/></svg>
+          <span class="n">clock</span>
+          <span class="l">Horário</span>
+        </button>
+        <button class="card" type="button" data-name="home" data-label="em casa" title="Copiar o código de home">
+          <svg class="ic" aria-hidden="true"><use href="#home"/></svg>
+          <span class="n">home</span>
+          <span class="l">Em casa</span>
+        </button>
+        <button class="card" type="button" data-name="syringe" data-label="vacina" title="Copiar o código de syringe">
+          <svg class="ic" aria-hidden="true"><use href="#syringe"/></svg>
+          <span class="n">syringe</span>
+          <span class="l">Vacina</span>
+        </button>
+        <button class="card" type="button" data-name="stethoscope" data-label="consulta" title="Copiar o código de stethoscope">
+          <svg class="ic" aria-hidden="true"><use href="#stethoscope"/></svg>
+          <span class="n">stethoscope</span>
+          <span class="l">Consulta</span>
+        </button>
+        <button class="card" type="button" data-name="bag" data-label="maleta" title="Copiar o código de bag">
+          <svg class="ic" aria-hidden="true"><use href="#bag"/></svg>
+          <span class="n">bag</span>
+          <span class="l">Maleta</span>
+        </button>
+        <button class="card" type="button" data-name="sofa" data-label="sofá" title="Copiar o código de sofa">
+          <svg class="ic" aria-hidden="true"><use href="#sofa"/></svg>
+          <span class="n">sofa</span>
+          <span class="l">Sofá</span>
+        </button>
+        <button class="card" type="button" data-name="car-off" data-label="sem transporte" title="Copiar o código de car-off">
+          <svg class="ic" aria-hidden="true"><use href="#car-off"/></svg>
+          <span class="n">car-off</span>
+          <span class="l">Sem transporte</span>
+        </button>
+        <button class="card" type="button" data-name="hourglass" data-label="sem espera" title="Copiar o código de hourglass">
+          <svg class="ic" aria-hidden="true"><use href="#hourglass"/></svg>
+          <span class="n">hourglass</span>
+          <span class="l">Sem espera</span>
+        </button>
+      </div>
+    </section>
+    <section class="grp" aria-label="Confiança">
+      <h2>Confiança</h2>
+      <div class="grid">
+        <button class="card" type="button" data-name="heart" data-label="cuidado" title="Copiar o código de heart">
+          <svg class="ic" aria-hidden="true"><use href="#heart"/></svg>
+          <span class="n">heart</span>
+          <span class="l">Cuidado</span>
+        </button>
+        <button class="card" type="button" data-name="shield" data-label="confiança" title="Copiar o código de shield">
+          <svg class="ic" aria-hidden="true"><use href="#shield"/></svg>
+          <span class="n">shield</span>
+          <span class="l">Confiança</span>
+        </button>
+        <button class="card" type="button" data-name="check" data-label="confirmado" title="Copiar o código de check">
+          <svg class="ic" aria-hidden="true"><use href="#check"/></svg>
+          <span class="n">check</span>
+          <span class="l">Confirmado</span>
+        </button>
+        <button class="card" type="button" data-name="star" data-label="destaque" title="Copiar o código de star">
+          <svg class="ic" aria-hidden="true"><use href="#star"/></svg>
+          <span class="n">star</span>
+          <span class="l">Destaque</span>
+        </button>
+        <button class="card" type="button" data-name="sparkle" data-label="novidade" title="Copiar o código de sparkle">
+          <svg class="ic" aria-hidden="true"><use href="#sparkle"/></svg>
+          <span class="n">sparkle</span>
+          <span class="l">Novidade</span>
+        </button>
+        <button class="card" type="button" data-name="quote" data-label="depoimento" title="Copiar o código de quote">
+          <svg class="ic" aria-hidden="true"><use href="#quote"/></svg>
+          <span class="n">quote</span>
+          <span class="l">Depoimento</span>
+        </button>
+      </div>
+    </section>
+    <section class="grp" aria-label="Contato">
+      <h2>Contato</h2>
+      <div class="grid">
+        <button class="card" type="button" data-name="chat" data-label="conversa" title="Copiar o código de chat">
+          <svg class="ic" aria-hidden="true"><use href="#chat"/></svg>
+          <span class="n">chat</span>
+          <span class="l">Conversa</span>
+        </button>
+        <button class="card" type="button" data-name="phone" data-label="telefone" title="Copiar o código de phone">
+          <svg class="ic" aria-hidden="true"><use href="#phone"/></svg>
+          <span class="n">phone</span>
+          <span class="l">Telefone</span>
+        </button>
+        <button class="card" type="button" data-name="mail" data-label="e-mail" title="Copiar o código de mail">
+          <svg class="ic" aria-hidden="true"><use href="#mail"/></svg>
+          <span class="n">mail</span>
+          <span class="l">E-mail</span>
+        </button>
+        <button class="card" type="button" data-name="pin" data-label="local" title="Copiar o código de pin">
+          <svg class="ic" aria-hidden="true"><use href="#pin"/></svg>
+          <span class="n">pin</span>
+          <span class="l">Local</span>
+        </button>
+        <button class="card" type="button" data-name="camera" data-label="instagram" title="Copiar o código de camera">
+          <svg class="ic" aria-hidden="true"><use href="#camera"/></svg>
+          <span class="n">camera</span>
+          <span class="l">Instagram</span>
+        </button>
+        <button class="card" type="button" data-name="person" data-label="pessoa" title="Copiar o código de person">
+          <svg class="ic" aria-hidden="true"><use href="#person"/></svg>
+          <span class="n">person</span>
+          <span class="l">Pessoa</span>
+        </button>
+      </div>
+    </section>
+    <section class="grp" aria-label="Interface">
+      <h2>Interface</h2>
+      <div class="grid">
+        <button class="card" type="button" data-name="arrow-right" data-label="seta" title="Copiar o código de arrow-right">
+          <svg class="ic" aria-hidden="true"><use href="#arrow-right"/></svg>
+          <span class="n">arrow-right</span>
+          <span class="l">Seta</span>
+        </button>
+        <button class="card" type="button" data-name="chevron-down" data-label="abrir" title="Copiar o código de chevron-down">
+          <svg class="ic" aria-hidden="true"><use href="#chevron-down"/></svg>
+          <span class="n">chevron-down</span>
+          <span class="l">Abrir</span>
+        </button>
+        <button class="card" type="button" data-name="chevron-right" data-label="avançar" title="Copiar o código de chevron-right">
+          <svg class="ic" aria-hidden="true"><use href="#chevron-right"/></svg>
+          <span class="n">chevron-right</span>
+          <span class="l">Avançar</span>
+        </button>
+        <button class="card" type="button" data-name="menu" data-label="menu" title="Copiar o código de menu">
+          <svg class="ic" aria-hidden="true"><use href="#menu"/></svg>
+          <span class="n">menu</span>
+          <span class="l">Menu</span>
+        </button>
+        <button class="card" type="button" data-name="close" data-label="fechar" title="Copiar o código de close">
+          <svg class="ic" aria-hidden="true"><use href="#close"/></svg>
+          <span class="n">close</span>
+          <span class="l">Fechar</span>
+        </button>
+        <button class="card" type="button" data-name="plus" data-label="mais" title="Copiar o código de plus">
+          <svg class="ic" aria-hidden="true"><use href="#plus"/></svg>
+          <span class="n">plus</span>
+          <span class="l">Mais</span>
+        </button>
+      </div>
+    </section>
+  </div>
+  <pre><code>&lt;script src="js/icons.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="css/icons.css"&gt;
+
+&lt;svg class="ic ic--lg" aria-hidden="true"&gt;&lt;use href="#calendar"/&gt;&lt;/svg&gt;</code></pre>
+</div>
+<script src="js/icons.js"></script>
+<script>
+(function () {
+  var list = document.getElementById('list');
+  var q = document.getElementById('q');
+  var size = document.getElementById('size');
+  var mono = document.getElementById('mono');
+  var theme = document.getElementById('theme');
+  var root = document.documentElement;
+  q.addEventListener('input', function () {
+    var v = q.value.trim().toLowerCase();
+    Array.prototype.forEach.call(list.querySelectorAll('.card'), function (c) {
+      var hit = !v || c.dataset.name.indexOf(v) > -1 || c.dataset.label.indexOf(v) > -1;
+      c.classList.toggle('hidden', !hit);
+    });
+    Array.prototype.forEach.call(list.querySelectorAll('.grp'), function (g) {
+      g.classList.toggle('hidden', !g.querySelector('.card:not(.hidden)'));
+    });
+  });
+  size.addEventListener('input', function () { list.style.setProperty('--size', size.value + 'px'); });
+  mono.addEventListener('click', function () {
+    var on = mono.getAttribute('aria-pressed') !== 'true';
+    mono.setAttribute('aria-pressed', String(on));
+    Array.prototype.forEach.call(list.querySelectorAll('.ic'), function (i) { i.classList.toggle('ic--mono', on); });
+  });
+  theme.addEventListener('click', function () {
+    var dark = root.getAttribute('data-theme') === 'dark';
+    root.setAttribute('data-theme', dark ? 'light' : 'dark');
+    theme.textContent = dark ? 'Tema escuro' : 'Tema claro';
+  });
+  list.addEventListener('click', function (e) {
+    var c = e.target.closest('.card');
+    if (!c) { return; }
+    var code = '<svg class="ic" aria-hidden="true"><use href="#' + c.dataset.name + '"/></svg>';
+    function done() {
+      c.classList.add('copied');
+      setTimeout(function () { c.classList.remove('copied'); }, 900);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(done, done);
+    } else { done(); }
+  });
+})();
+</script>
+</body>
+</html>

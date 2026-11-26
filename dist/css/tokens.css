@@ -1,0 +1,93 @@
+/* Ariadina Berezovsky | Design System | tokens v1.0
+   Fonte única de cores, tipografia, espaçamento e raios.
+   Tema claro é o padrão. O escuro vale pelo sistema (prefers-color-scheme)
+   ou por data-theme="dark" no elemento <html>. data-theme="light" força o claro. */
+
+:root {
+  /* Cores: regra 60/30/10 */
+  --surface: #F7D3DA;        /* 60%  fundo da peça (rosa bebê) */
+  --surface-soft: #FDE9DC;   /* 30%  cartões, selos, moldura da foto (creme-pêssego) */
+  --surface-deep: #EFB9C4;   /* apoio: um bloco por peça */
+  --ink: #4A2A1E;            /* títulos e corpo */
+  --ink-muted: #6B4636;      /* legendas e apoio */
+  --accent: #7A3E2B;         /* 10%  caramelo: botão, pata, um destaque por peça */
+  --accent-hover: #5F2D1E;
+  --on-accent: #FFFFFF;      /* texto sobre accent */
+  --border: #E3B0BB;         /* linha decorativa */
+  --focus: #7A3E2B;          /* anel de foco */
+  --success: #2F6B45;
+  --danger: #A3302B;
+
+  /* Tipografia */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Escala dos posts 1080x1350 */
+  --post-title-size: 112px;
+  --post-title-leading: 1.04;
+  --post-body-size: 38px;
+  --post-body-leading: 1.4;
+  --post-pill-size: 30px;
+  --post-cta-size: 44px;
+  --post-contact-size: 32px;
+
+  /* Escala de interface e web */
+  --fs-display: 48px;
+  --fs-heading: 28px;
+  --fs-body: 16px;
+  --fs-label: 14px;
+  --fs-caption: 13px;
+
+  /* Espaçamento */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 72px;           /* margem dos posts 1080x1350 */
+
+  /* Raios */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 32px;
+  --radius-xl: 56px;         /* moldura da foto nos posts */
+  --radius-pill: 999px;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface: #2B1A1E;
+    --surface-soft: #4A3330;
+    --surface-deep: #4A2B33;
+    --ink: #FBE8E1;
+    --ink-muted: #D9B8AE;
+    --accent: #E8A98C;
+    --accent-hover: #F0BBA2;
+    --on-accent: #3A1E14;
+    --border: #5A3A40;
+    --focus: #E8A98C;
+    --success: #8FD0A2;
+    --danger: #F4A09A;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --surface: #2B1A1E;
+  --surface-soft: #4A3330;
+  --surface-deep: #4A2B33;
+  --ink: #FBE8E1;
+  --ink-muted: #D9B8AE;
+  --accent: #E8A98C;
+  --accent-hover: #F0BBA2;
+  --on-accent: #3A1E14;
+  --border: #5A3A40;
+  --focus: #E8A98C;
+  --success: #8FD0A2;
+  --danger: #F4A09A;
+  color-scheme: dark;
+}

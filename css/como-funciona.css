@@ -1,0 +1,97 @@
+/* Ariadina Berezovsky | seção "Como funciona" | estilo
+   Depende de tokens.css, icons.css e landing.css (botões e variáveis --ease). A classe .eyebrow vem de agenda.css. */
+
+.how { position: relative; overflow: clip; background: var(--surface-deep); padding: clamp(72px, 9vw, 120px) 0; }
+.how__bg { position: absolute; inset: 0; pointer-events: none; }
+.hblob { position: absolute; display: block; border-radius: 50%; }
+.hblob--1 { width: 460px; height: 460px; right: -180px; top: -140px; background: var(--surface); opacity: .55; }
+.hblob--2 { width: 240px; height: 240px; left: -90px; bottom: 8%; background: var(--surface-soft); opacity: .6; }
+.how .wrap { position: relative; }
+.how .eyebrow { --icon-accent: var(--accent); }
+
+.how__head h2 { margin: 14px 0 0; max-width: 18ch; font-family: var(--font-display); font-weight: 600; font-size: clamp(34px, 4.8vw, 58px); line-height: 1.04; letter-spacing: -.02em; text-wrap: balance; }
+.how__lead { margin: 18px 0 0; max-width: 58ch; font-size: clamp(17px, 1.6vw, 19px); line-height: 1.55; }
+
+/* ---------- Trilha e passos ---------- */
+.flow { position: relative; margin-top: clamp(48px, 6vw, 72px); --p: 0; }
+.flow__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.4vw, 32px); }
+
+.flow__line { position: absolute; z-index: 0; left: calc(100% / 6); right: calc(100% / 6); top: 36px; height: 6px; border-radius: 6px; background: color-mix(in srgb, var(--surface) 70%, transparent); }
+.flow__fill { display: block; height: 100%; width: calc(var(--p) * 100%); border-radius: 6px; background: var(--accent); }
+.flow__paw { position: absolute; top: 50%; left: calc(var(--p) * 100%); width: 34px; height: 34px; margin: -17px 0 0 -17px; fill: var(--accent); transform: rotate(90deg); filter: drop-shadow(0 0 0 transparent); }
+.flow__paw { animation: none; }
+
+.step { position: relative; z-index: 1; padding: 0 0 6px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.step__n { position: relative; z-index: 2; width: 74px; height: 74px; border-radius: 50%; background: var(--surface); color: var(--accent); border: 6px solid var(--surface-deep); display: grid; place-items: center; font-family: var(--font-display); font-weight: 600; font-size: 30px; transition: background-color .5s var(--ease), color .5s var(--ease), transform .6s var(--ease-spring); }
+.step.is-active .step__n { background: var(--accent); color: var(--on-accent); transform: scale(1.08); }
+
+.step__ic { margin-top: -10px; width: 100%; padding: 56px 24px 28px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; background: var(--surface-soft); display: grid; place-items: center; transition: background-color .3s ease; }
+.step__ic .ic { --icon-accent: var(--accent); width: 64px; height: 64px; transition: transform .5s var(--ease-spring); }
+.step h3, .step p, .step__tag { background: var(--surface-soft); width: 100%; margin: 0; }
+.step h3 { padding: 0 24px 10px; font-family: var(--font-display); font-weight: 600; font-size: 26px; line-height: 1.15; }
+.step p { padding: 0 24px 20px; font-size: 16.5px; line-height: 1.55; }
+.step__tag { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 24px 26px; border-radius: 0 0 var(--radius-lg) var(--radius-lg); font-size: 14px; font-weight: 700; color: var(--accent); }
+.step__tag .ic { --icon-accent: var(--accent); }
+.step:hover .step__ic .ic { transform: translateY(-6px) rotate(-6deg) scale(1.08); }
+.step { transition: transform .5s var(--ease-spring); }
+.step:hover { transform: translateY(-6px); }
+
+/* ---------- Antes da visita ---------- */
+.prep { margin-top: clamp(40px, 5vw, 64px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; gap: clamp(20px, 3vw, 40px); align-items: center; padding: clamp(22px, 3vw, 36px); border-radius: var(--radius-lg); background: var(--surface); }
+.prep__t { display: flex; align-items: center; gap: 16px; }
+.prep__ic { flex: none; width: 68px; height: 68px; border-radius: 50%; background: var(--surface-soft); display: grid; place-items: center; }
+.prep__ic .ic { --icon-accent: var(--accent); }
+.prep__t h3 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 26px; line-height: 1.15; }
+.prep__t p { margin: 4px 0 0; font-size: 15px; color: var(--ink-muted); }
+.prep__l { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.prep__l li { display: flex; align-items: center; gap: 12px; font-size: 16.5px; font-weight: 500; line-height: 1.3; }
+.prep__l i { flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--surface-soft); display: grid; place-items: center; transition: background-color .4s var(--ease), color .4s var(--ease), transform .5s var(--ease-spring); }
+.prep__l i .ic { width: 18px; height: 18px; stroke-width: 2.4; --icon-accent: var(--accent); }
+.prep__l li.is-ticked i { background: var(--accent); color: var(--on-accent); transform: scale(1.1); }
+.prep__l li.is-ticked i .ic { --icon-accent: currentColor; }
+.prep__cta { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.prep__cta p { margin: 0 0 0 6px; font-size: 14px; color: var(--ink-muted); }
+
+/* ---------- Animações (só sem reduced-motion) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js .how [data-rv] { opacity: 0; transform: translateY(28px); }
+  .js .how [data-rv].is-in { animation: rise .9s var(--ease) both; animation-delay: calc(var(--k, 0) * 140ms); }
+  .js .how .step__ic .ic { transform: scale(.6); }
+  .js .how .step.is-in .step__ic .ic { animation: pop .8s var(--ease-spring) both; animation-delay: calc(var(--k, 0) * 140ms + 300ms); }
+  .flow__paw { animation: pawBob 1.4s ease-in-out infinite; }
+}
+
+@keyframes pawBob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -3px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .flow { --p: 1; }
+  .step__n, .prep__l i, .step, .step__ic .ic { transition: none; }
+  .step__n { background: var(--accent); color: var(--on-accent); }
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1000px) {
+  .prep { grid-template-columns: 1fr 1fr; }
+  .prep__cta { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 18px; flex-wrap: wrap; }
+}
+
+@media (max-width: 820px) {
+  .flow__list { grid-template-columns: 1fr; gap: 28px; padding-left: 44px; }
+  .flow__line { left: 17px; right: auto; top: 36px; bottom: 120px; width: 6px; height: auto; }
+  .flow__fill { width: 100%; height: calc(var(--p) * 100%); }
+  .flow__paw { left: 50%; top: calc(var(--p) * 100%); margin: -17px 0 0 -17px; transform: rotate(180deg); }
+  .step { align-items: stretch; text-align: left; }
+  .step__n { position: absolute; left: -44px; top: 0; width: 56px; height: 56px; margin-left: -11px; font-size: 24px; }
+  .step__ic { margin-top: 0; padding: 22px 24px 8px; justify-content: start; place-items: start; }
+  .step__ic .ic { width: 52px; height: 52px; }
+  .step h3, .step p, .step__tag { text-align: left; }
+  .step__tag { justify-content: flex-start; }
+  .prep { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .flow__list { padding-left: 36px; }
+  .flow__line { left: 13px; }
+  .step__n { left: -36px; width: 50px; height: 50px; margin-left: -12px; }
+  .prep__cta .btn { width: 100%; }
+}

@@ -1,0 +1,82 @@
+/* Ariadina Berezovsky | Design System | componentes v1.0
+   Classes reutilizáveis com prefixo ab-. Exigem tokens.css carregado antes.
+   Fontes: Fraunces (títulos) e DM Sans (texto), via Google Fonts no HTML. */
+
+/* ---------- Wordmark ---------- */
+.ab-wordmark { display: inline-flex; align-items: center; gap: 14px; color: var(--ink); }
+.ab-wordmark__icon { width: 44px; height: 44px; fill: var(--accent); flex: none; }
+.ab-wordmark__name { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 34px; line-height: 1; color: var(--ink); }
+.ab-wordmark__desc { margin: 6px 0 0; font-family: var(--font-sans); font-weight: 500; font-size: 13px; line-height: 1.2; color: var(--ink-muted); }
+.ab-wordmark--stack { display: block; background: var(--surface-soft); border-radius: var(--radius-md); padding: 22px 26px; }
+.ab-wordmark--stack .ab-wordmark__name { font-size: 30px; }
+
+/* ---------- Selo ---------- */
+.ab-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--surface-soft); color: var(--ink);
+  font-family: var(--font-sans); font-weight: 700; font-size: var(--fs-label); line-height: 1.2;
+  padding: 7px 14px; border-radius: var(--radius-pill);
+}
+.ab-pill svg { width: 17px; height: 17px; fill: var(--accent); flex: none; }
+.ab-pill--deep { background: var(--surface-deep); }
+
+/* ---------- Botão ---------- */
+.ab-button {
+  display: inline-block; border: 0; cursor: pointer; text-decoration: none;
+  font-family: var(--font-sans); font-weight: 500; font-size: 18px; line-height: 1.1;
+  padding: 13px 26px; border-radius: var(--radius-pill);
+  background: var(--accent); color: var(--on-accent);
+  transition: background-color .15s ease;
+}
+.ab-button:hover, .ab-button.is-hover { background: var(--accent-hover); }
+.ab-button:focus-visible, .ab-button.is-focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ab-button--secondary { background: var(--surface-soft); color: var(--ink); }
+.ab-button--secondary:hover { background: var(--surface-deep); }
+@media (prefers-reduced-motion: reduce) { .ab-button { transition: none; } }
+
+/* ---------- Moldura da foto ---------- */
+.ab-photo-frame {
+  border: 5px solid var(--surface-soft); border-radius: 28px;
+  overflow: hidden; background: var(--surface-soft);
+}
+.ab-photo-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 78%; }
+
+/* ---------- Post 1080x1350 em escala real ----------
+   Para mostrar menor, envolva em um contêiner e use transform: scale().
+   Estrutura: .ab-post > .ab-post__pill, .ab-post__title, .ab-post__body,
+   .ab-post__photo, .ab-post__bar (.ab-post__cta, .ab-post__contact). */
+.ab-post {
+  width: 1080px; height: 1350px; box-sizing: border-box;
+  padding: var(--space-8) var(--space-8) 64px;
+  display: flex; flex-direction: column; overflow: hidden;
+  background: var(--surface); font-family: var(--font-sans); color: var(--ink);
+}
+.ab-post__pill {
+  align-self: flex-start; display: flex; align-items: center; gap: 14px;
+  background: var(--surface-soft); color: var(--ink);
+  font-weight: 700; font-size: var(--post-pill-size); line-height: 1.2;
+  padding: 14px 28px; border-radius: var(--radius-pill);
+}
+.ab-post__pill svg { width: 34px; height: 34px; fill: var(--accent); }
+.ab-post__title {
+  margin: 44px 0 0; font-family: var(--font-display); font-weight: 600;
+  font-size: var(--post-title-size); line-height: var(--post-title-leading);
+  letter-spacing: -1px; color: var(--ink); text-wrap: balance;
+}
+.ab-post__body {
+  margin: 26px 0 0; max-width: 860px; font-weight: 400;
+  font-size: var(--post-body-size); line-height: var(--post-body-leading);
+  color: var(--ink); text-wrap: balance;
+}
+.ab-post__photo {
+  margin-top: 40px; flex: 1; min-height: 0; overflow: hidden;
+  border: 10px solid var(--surface-soft); border-radius: var(--radius-xl);
+}
+.ab-post__photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 78%; }
+.ab-post__bar { margin-top: 36px; display: flex; align-items: center; justify-content: space-between; }
+.ab-post__cta {
+  background: var(--accent); color: var(--on-accent);
+  font-weight: 500; font-size: var(--post-cta-size); line-height: 1.1;
+  padding: 26px 52px; border-radius: var(--radius-pill);
+}
+.ab-post__contact { font-weight: 700; font-size: var(--post-contact-size); line-height: 1.35; text-align: right; color: var(--ink); }

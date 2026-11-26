@@ -1,0 +1,77 @@
+/* Ariadina Berezovsky | rodapé e contato | estilo
+   Depende de tokens.css, icons.css, landing.css (botões .btn) e agenda.css (.eyebrow).
+   Fundo caramelo (--accent): é o único bloco grande escuro da página e fecha a leitura. */
+
+.foot { position: relative; overflow: clip; background: var(--accent); color: var(--on-accent); padding: clamp(56px, 7vw, 96px) 0 0; }
+.foot a:not(.btn) { color: inherit; }
+.foot :focus-visible { outline-color: var(--surface-soft); }
+.foot__bg { position: absolute; inset: 0; pointer-events: none; }
+.foot__paw { position: absolute; right: -90px; top: -70px; width: 420px; height: 420px; fill: var(--on-accent); opacity: .05; rotate: 18deg; }
+.foot .wrap { position: relative; }
+
+/* ---------- Cartão de contato ---------- */
+.foot__cta { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding: clamp(28px, 4vw, 52px); border-radius: var(--radius-lg); background: var(--surface-soft); color: var(--ink); }
+.foot__cta .eyebrow { --icon-accent: var(--accent); }
+.foot__cta h2 { margin: 14px 0 0; font-family: var(--font-display); font-weight: 600; font-size: clamp(30px, 3.8vw, 46px); line-height: 1.08; letter-spacing: -.02em; text-wrap: balance; }
+.foot__cta p:not(.eyebrow) { margin: 14px 0 0; max-width: 46ch; font-size: 17px; line-height: 1.55; }
+.foot__btns { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
+.foot__btns .btn { justify-content: center; }
+.foot__btns .btn--ghost { background: var(--surface); }
+.foot__btns .btn--ghost:hover { background: var(--surface-deep); }
+
+/* ---------- Colunas ---------- */
+.foot__grid { display: grid; grid-template-columns: 1.3fr .8fr 1fr 1.2fr; gap: clamp(28px, 4vw, 56px); padding: clamp(44px, 6vw, 72px) 0 clamp(36px, 5vw, 56px); }
+.foot__brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.foot__brand svg { width: 42px; height: 42px; fill: var(--surface-soft); transition: transform .5s var(--ease-spring); }
+.foot__brand:hover svg { transform: rotate(-14deg) scale(1.12); }
+.foot__brand b { display: block; font-family: var(--font-display); font-weight: 600; font-size: 24px; line-height: 1.1; }
+.foot__brand small { display: block; margin-top: 3px; font-size: 13px; color: color-mix(in srgb, var(--on-accent) 78%, transparent); }
+.foot__about { margin: 18px 0 0; max-width: 34ch; font-size: 16px; line-height: 1.6; color: color-mix(in srgb, var(--on-accent) 86%, transparent); }
+.foot h3 { margin: 0 0 16px; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--surface-deep); }
+.foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.foot li { font-size: 16px; line-height: 1.45; }
+.foot__links a { display: inline-block; text-decoration: none; padding: 2px 0; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat; transition: background-size .35s var(--ease); }
+.foot__links a:hover { background-size: 100% 1.5px; }
+.foot__info li { display: flex; align-items: flex-start; gap: 10px; }
+.foot__info .ic { --icon-accent: var(--surface-deep); margin-top: 2px; color: var(--surface-soft); }
+.foot__info a { text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat; transition: background-size .35s var(--ease); }
+.foot__info a:hover { background-size: 100% 1.5px; }
+.foot__info small { display: block; font-size: 13px; color: color-mix(in srgb, var(--on-accent) 72%, transparent); }
+
+/* ---------- Barra final ---------- */
+.foot__bar { display: flex; align-items: center; justify-content: space-between; gap: 16px 24px; flex-wrap: wrap; padding: 22px 0 max(22px, env(safe-area-inset-bottom, 0px)); border-top: 1px solid color-mix(in srgb, var(--on-accent) 22%, transparent); font-size: 14px; color: color-mix(in srgb, var(--on-accent) 80%, transparent); }
+.foot__bar p { margin: 0; max-width: 70ch; }
+.foot__trail { display: flex; gap: 10px; align-items: center; }
+.foot__trail svg { width: 18px; height: 18px; fill: var(--surface-deep); opacity: .85; }
+.foot__trail svg:nth-child(odd) { translate: 0 -5px; }
+.foot__top { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; color: var(--on-accent); }
+.foot__top span { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--surface-soft); color: var(--accent); transition: transform .4s var(--ease-spring); }
+.foot__top span .ic { --icon-accent: currentColor; rotate: -90deg; }
+.foot__top:hover span { transform: translateY(-5px); }
+
+/* ---------- Animações ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js .foot [data-rv4] { opacity: 0; transform: translateY(26px); }
+  .js .foot [data-rv4].is-in { animation: rise .9s var(--ease) both; animation-delay: calc(var(--k, 0) * 120ms); }
+  .js .foot__trail svg { opacity: 0; }
+  .js .foot__bar.is-in .foot__trail svg { animation: pawStep .5s var(--ease-spring) both; animation-delay: calc(var(--n) * 140ms + 250ms); }
+  .foot__paw { animation: float 9s ease-in-out infinite; }
+}
+@keyframes pawStep { from { opacity: 0; transform: translateX(-14px) scale(.6); } to { opacity: .85; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .foot__brand svg, .foot__top span, .foot__links a, .foot__info a { transition: none; }
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1000px) {
+  .foot__cta { grid-template-columns: 1fr; }
+  .foot__btns { flex-direction: row; flex-wrap: wrap; }
+  .foot__btns .btn { flex: 1 1 220px; }
+  .foot__grid { grid-template-columns: 1fr 1fr; }
+  .foot__col--brand { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .foot__grid { grid-template-columns: 1fr; }
+  .foot__btns .btn { flex-basis: 100%; }
+  .foot__bar { flex-direction: column; align-items: flex-start; }
+}

@@ -1,0 +1,24 @@
+/* Ariadina Berezovsky | biblioteca de ícones (gerado por tools/gen-icons.js)
+   Uso: <svg class="ic" aria-hidden="true"><use href="#paw"/></svg>
+   Tamanhos: .ic--sm (16px) .ic--md (24px, padrão) .ic--lg (32px) .ic--xl (48px)
+   Cores: o traço segue "color"; o detalhe segue --icon-accent (padrão: --accent). */
+.ic {
+  display: inline-block;
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: middle;
+  overflow: visible;
+}
+.ic .fa { fill: var(--icon-accent, var(--accent, currentColor)); }
+.ic .as { stroke: var(--icon-accent, var(--accent, currentColor)); }
+.ic--sm { width: 1rem; height: 1rem; }
+.ic--md { width: 1.5rem; height: 1.5rem; }
+.ic--lg { width: 2rem; height: 2rem; }
+.ic--xl { width: 3rem; height: 3rem; }
+.ic--mono { --icon-accent: currentColor; }

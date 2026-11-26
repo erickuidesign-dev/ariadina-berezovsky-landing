@@ -1,0 +1,11 @@
+# Configuração local do Claude Code
+.claude/
+
+# Restos de teste e fotos antigas (não fazem parte do site)
+_m.html
+assets/fotos-antigas-ia/
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
