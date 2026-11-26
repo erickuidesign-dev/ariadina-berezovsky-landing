@@ -4,7 +4,7 @@
 window.AB_AGENDA_CONFIG = {
   // WhatsApp que recebe os pedidos: só números, com 55 + DDD + número. Ex.: '5541999999999'
   // Vazio = o site mostra o texto do pedido e um botão para copiar (CONFIRMAR o número).
-  whatsapp: '',
+  whatsapp: '5511974307939',
 
   profissional: 'Ariadina',
 
