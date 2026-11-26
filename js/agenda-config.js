@@ -14,7 +14,7 @@ window.AB_AGENDA_CONFIG = {
     email: '',        // Ex.: 'contato@exemplo.com.br'
     instagram: '',    // Ex.: '@ariadina.vet'
     regiao: '',       // Ex.: 'Atendo em Curitiba e região'
-    crmv: ''          // Ex.: 'CRMV-PR 00000' (registro profissional; recomendado exibir)
+    crmv: 'CRMV-SP 61370'  // registro profissional exibido no rodapé
   },
 
   // Dias de atendimento: 0 = domingo ... 6 = sábado. Cada dia tem início e fim.
